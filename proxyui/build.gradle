@@ -1,7 +1,8 @@
 plugins {
     id 'war'
-    id 'org.springframework.boot' version '2.2.0.RELEASE'
-    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+    id 'org.springframework.boot' version '2.3.5.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+    id 'org.jetbrains.kotlin.jvm' version '1.4.20-RC'
 }
 
 apply from: "$rootDir/dependencies.gradle"
@@ -12,7 +13,7 @@ configurations.all {
 }
 
 bootWar {
-    mainClassName = 'com.groupon.odo.controllers.HomeController'
+    mainClassName = 'com.odoteam.odo.controllers.HomeController'
     launchScript()
 }
 
@@ -27,9 +28,6 @@ dependencies {
     implementation deps.spring_boot_starter_data_jpa
     implementation deps.aspectjrt
     implementation deps.javax_inject
-    implementation deps.jackson_core
-    implementation deps.jackson_databind
-    implementation deps.jackson_annotations
     implementation deps.commons_fileupload
     implementation deps.commons_io
     implementation deps.webjars_jquery
@@ -53,4 +51,18 @@ dependencies {
     testImplementation deps.spring_boot_starter_test
     testImplementation deps.junit
     testImplementation deps.apache_httpclient
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+}
+repositories {
+    mavenCentral()
+}
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+compileTestKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 }

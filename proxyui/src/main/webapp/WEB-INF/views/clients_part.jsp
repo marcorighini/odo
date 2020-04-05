@@ -120,7 +120,7 @@ function changeClientSubmit(id) {
 
     saveClientRow(id, active);
 
-    $.removeCookie("UUID", {expires: 10000, path: '/testproxy/'});
+    $.removeCookie("UUID", {expires: 10000, path: '/odo/'});
     var value = $("#clientlist").jqGrid('getCell', id, "friendlyName");
     if (value === "") {
         value = $("#clientlist").jqGrid('getCell', id, 'uuid');

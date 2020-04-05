@@ -41,14 +41,14 @@ import java.util.HashMap;
 public class Client {
     protected final OkHttpClient okHttpClient = new OkHttpClient();
     protected String ODO_HOST = "localhost";
-    protected String BASE_URL = "http://localhost:8090/testproxy/api/";
+    protected String BASE_URL = "http://localhost:8090/odo/api/";
     protected int API_PORT = 8090;
 
-    protected static String DEFAULT_BASE_URL = "http://localhost:8090/testproxy/api/";
+    protected static String DEFAULT_BASE_URL = "http://localhost:8090/odo/api/";
     public static int DEFAULT_API_PORT = 8090;
 
     // API Paths
-    protected static String API_BASE = "testproxy/api";
+    protected static String API_BASE = "odo/api";
     protected static String BASE_PATH = "path/";
     protected static String BASE_PROFILE = "profile/";
     protected static String BASE_METHOD = "method/";

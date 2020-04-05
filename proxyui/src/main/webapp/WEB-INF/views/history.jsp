@@ -257,7 +257,7 @@
         if (!isNaN(historyGridRows)) {
             $.cookie("historyGridRows", historyGridRows, {
                 expires: 10000,
-                path: '/testproxy/history'
+                path: '/odo/history'
             });
             $("#historylist").setGridParam({rowNum: historyGridRows});
             $("#historylist").trigger('reloadGrid');
@@ -857,7 +857,7 @@
                 {
                     handles: "n, s",
                     stop: function( event, ui ) {
-                        $.cookie("historyGridHeight", ui.size.height, { expires: 10000, path: '/testproxy/history' });
+                        $.cookie("historyGridHeight", ui.size.height, { expires: 10000, path: '/odo/history' });
                     }
                 });
 
