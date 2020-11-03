@@ -495,14 +495,14 @@
                 url : '<c:url value="/api/profile/${profile_id}/clients/"/>' + $.cookie("UUID"),
                 success : function(data) {
                     if (data.client == null || (data.client.uuid == -1 && $.cookie("UUID") != null)) {
-                        $.removeCookie("UUID", { expires: 10000, path: '/testproxy/' });
+                        $.removeCookie("UUID", { expires: 10000, path: '/odo/' });
                         document.location.href =  document.location.protocol + "//" + document.location.hostname + ":" +  document.location.port + document.location.pathname;
                     } else {
                         if ("${clientUUID}" == "-1" && $.cookie("UUID") != null) {
                             document.location.href =  document.location.protocol + "//" + document.location.hostname + ":" +  document.location.port + document.location.pathname +
                                 "?" + 'clientUUID='+$.cookie("UUID");
                         } else if ("${clientUUID}" != "-1") {
-                            $.cookie("UUID", "${clientUUID}", { expires: 10000, path: '/testproxy/' });
+                            $.cookie("UUID", "${clientUUID}", { expires: 10000, path: '/odo/' });
                         }
                     }
                 }
@@ -626,7 +626,7 @@
                 autowidth : true,
                 caption : 'API Servers',
                 cellEdit : true,
-                cellurl : '/testproxy/api/edit/server',
+                cellurl : '/odo/api/edit/server',
                 colNames : [ 'Cert', 'ID', 'Enabled', 'Source Hostname/IP',
                         'Destination Hostname/IP', 'Host Header (optional)' ],
                 colModel : [ {
@@ -1147,7 +1147,7 @@
                     repeatitems : false
                 },
                 loadonce: true,
-                cellurl : '/testproxy/api/group',
+                cellurl : '/odo/api/group',
                 gridComplete : function() {
                     if($("#groupsTable").length > 0){
                         $("#groupsTable").setSelection(

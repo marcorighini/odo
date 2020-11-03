@@ -80,7 +80,7 @@
                     repeatitems: false
                 },
                 loadonce: true,
-                cellurl: '/testproxy/api/group',
+                cellurl: '/odo/api/group',
                 gridComplete: function() {
                     if ($("#groupsList").length > 0){
                         $("#groupsList").setSelection($("#groupsList").getDataIDs()[0], true);

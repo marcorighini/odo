@@ -13,9 +13,9 @@
  See the License for the specific language governing permissions and
  limitations under the License.
 */
-package com.groupon.odo.controllers;
+package com.odoteam.odo.controllers;
 
-import com.groupon.odo.controllers.models.Identifiers;
+import com.odoteam.odo.controllers.models.Identifiers;
 import com.groupon.odo.proxylib.OverrideService;
 import com.groupon.odo.proxylib.PathOverrideService;
 import com.groupon.odo.proxylib.ProfileService;

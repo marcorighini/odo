@@ -13,7 +13,7 @@
  See the License for the specific language governing permissions and
  limitations under the License.
 */
-package com.groupon.odo.controllers.models;
+package com.odoteam.odo.controllers.models;
 
 public class Identifiers {
     private Integer profileId = null;

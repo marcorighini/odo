@@ -13,7 +13,7 @@
  See the License for the specific language governing permissions and
  limitations under the License.
 */
-package com.groupon.odo.containers;
+package com.odoteam.odo.containers;
 
 import com.groupon.odo.Proxy;
 import com.groupon.odo.RemoveHeaderFilter;

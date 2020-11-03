@@ -12,7 +12,7 @@ configurations.all {
 }
 
 bootWar {
-    mainClassName = 'com.groupon.odo.controllers.HomeController'
+    mainClassName = 'com.odoteam.odo.controllers.HomeController'
     launchScript()
 }
 

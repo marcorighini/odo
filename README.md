@@ -21,8 +21,8 @@ To try out Odo without needing to download the source and package it, check out 
 1. Create a "plugins" directory at the odo.war location.
 2. Place the plugin jar file in the plugins directory
 3. Start Odo by running `java -Xmx1024m -jar odo.war`
-4. Import the sample configuration by running `curl -X POST -F fileData=@backup.json http://localhost:8090/testproxy/api/backup`
-5. View the Odo UI at `http://localhost:8090/testproxy`
+4. Import the sample configuration by running `curl -X POST -F fileData=@backup.json http://localhost:8090/odo/api/backup`
+5. View the Odo UI at `http://localhost:8090/odo`
 
 ## Package Odo
 Ensure that you have [Java 8](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) installed. We currently do not support any other versions of Java due to technical limitations.
@@ -51,12 +51,12 @@ If you have Odo plugins, place them in a "plugins" directory under the `proxyui.
 
 ## Using Odo
 ### Odo UI
-Odo UI is available at http://localhost:8090/testproxy
+Odo UI is available at http://localhost:8090/odo
 
 #### UI Quickstart: Setting up a Profile
 If you are starting from a fresh install, there are a few preliminary steps before actually configuring an override.
 
-1. **Create a profile.** When you navigate to `http://localhost:8090/testproxy` you are presented with the profile list. Initially it will be empty. To create a new Profile, click the '+' icon below the list and give the new profile a name in the dialog that appears. Select the newly-created profile. Finally, click the "Activate Profile" button at the top of the profile page.
+1. **Create a profile.** When you navigate to `http://localhost:8090/odo` you are presented with the profile list. Initially it will be empty. To create a new Profile, click the '+' icon below the list and give the new profile a name in the dialog that appears. Select the newly-created profile. Finally, click the "Activate Profile" button at the top of the profile page.
 
 2. **Add an API server.** An API server is needed to determine which requests to handle. When a request enters Odo, the request hostname is compared to the API Servers configured. If the request hostname is not in Odo's configured hostnames, Odo will simply pass the request through without processing it.
 
@@ -101,7 +101,7 @@ Included in the examples directory is a sample configuration backup. The sample 
 You can then import the backup.json data and view a sample Odo configuration.
 
 Via Odo UI:
-1. Navigate to the profile screen: http://localhost:8090/testproxy
+1. Navigate to the profile screen: http://localhost:8090/odo
 2. Click the **Options** menu
 3. Click the **Import Configuration** item
 4. Select your json file to import(backup.json in this case)
@@ -109,7 +109,7 @@ Via Odo UI:
 
 Via API:
 ```
-curl -X POST -F fileData=@backup.json http://localhost:8090/testproxy/api/backup
+curl -X POST -F fileData=@backup.json http://localhost:8090/odo/api/backup
 ```
 
 Note that the API Servers contains a single entry. The source host is "localhost" and the destination host is "blackhole". This implies that requests sent to "localhost" will be considered for overrides. The destination host is "blackhole" simply because this is a host that does not resolve. For a path with a custom override enabled the destination host will not be resolved.
@@ -121,7 +121,7 @@ The examples directory contains samples to help get you started with Odo
 * plugin: Example code demonstrating how you can extend Odo's functionality by adding your own override behaviors.
 
 ### Default Odo Ports
-* 8090: API - access the Odo UI, Odo configuration REST endpoints (http://localhost:8090/testproxy/api/)
+* 8090: API - access the Odo UI, Odo configuration REST endpoints (http://localhost:8090/odo/api/)
 * 8082: HTTP proxy - handles HTTP traffic
 * 8012: HTTPS proxy - handles HTTPS traffic
 * 9090: Forwarding port. You can send HTTP and HTTPS requests to this port and Odo will forward them to the correct port according to the protocol

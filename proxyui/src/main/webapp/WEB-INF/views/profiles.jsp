@@ -98,7 +98,7 @@
                     root: 'profiles',
                     repeatitems: false
                 },
-                cellurl: '/testproxy/edit/api/server',
+                cellurl: '/odo/edit/api/server',
                 rowList: [],
                 pager: '#profilenavGrid',
                 sortname: 'id',

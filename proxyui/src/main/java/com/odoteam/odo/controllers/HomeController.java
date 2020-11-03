@@ -1,25 +1,10 @@
-/*
- Copyright 2014 Groupon, Inc.
+package com.odoteam.odo.controllers;
 
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
-
- http://www.apache.org/licenses/LICENSE-2.0
-
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
-*/
-package com.groupon.odo.controllers;
-
-import com.groupon.odo.containers.HttpProxyContainer;
 import com.groupon.odo.proxylib.Constants;
 import com.groupon.odo.proxylib.HistoryService;
 import com.groupon.odo.proxylib.SQLService;
 import com.groupon.odo.proxylib.Utils;
+import com.odoteam.odo.containers.HttpProxyContainer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -30,9 +15,7 @@ import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactor
 import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
 import org.springframework.context.annotation.*;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 
 import javax.annotation.PostConstruct;
@@ -42,28 +25,22 @@ import java.io.File;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
-/**
- * Handles requests for the application home page.
- */
 @Controller
-@ComponentScan(basePackages = {"com.groupon.odo.controllers"}, excludeFilters = {
-    @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, value = HttpProxyContainer.class)
-})
+@ComponentScan(
+        basePackages = {"com.odoteam.odo.controllers"},
+        excludeFilters = {@ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, value = HttpProxyContainer.class)}
+)
 @EnableAutoConfiguration(exclude = {ServletWebServerFactoryAutoConfiguration.class})
 @PropertySources(value = {@PropertySource("classpath:application.properties")})
 public class HomeController {
     private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-    public File baseDirectory;
 
     @PostConstruct
     public void init() {
-        // update SQL schema
         try {
             SQLService.getInstance().updateSchema("/migrations");
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
@@ -74,16 +51,12 @@ public class HomeController {
         try {
             SQLService.getInstance().stopServer();
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
 
-    /**
-     * Simply selects the home view to render by returning its name.
-     */
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String home(Locale locale, Model model) {
+    @GetMapping(value = "/")
+    public String home() {
         return "redirect:profiles";
     }
 
@@ -94,9 +67,8 @@ public class HomeController {
         int apiPort = Utils.getSystemPort(Constants.SYS_API_PORT);
         factory.setPort(apiPort);
         factory.getSession().setTimeout(Duration.ofMinutes(10));
-        factory.setContextPath("/testproxy");
-        baseDirectory = new File("./tmp");
-        factory.setBaseDirectory(baseDirectory);
+        factory.setContextPath("/odo");
+        factory.setBaseDirectory(new File("./tmp"));
         List<TomcatConnectorCustomizer> cs = new ArrayList();
         cs.add(tomcatConnectorCustomizers());
         factory.setTomcatConnectorCustomizers(cs);
@@ -116,10 +88,10 @@ public class HomeController {
         };
     }
 
+    // TODO check if used
     @Bean
     public Filter hiddenHttpMethodFilter() {
-        HiddenHttpMethodFilter filter = new HiddenHttpMethodFilter();
-        return filter;
+        return new HiddenHttpMethodFilter();
     }
 
     public static void main(String[] args) {

@@ -13,14 +13,14 @@
  See the License for the specific language governing permissions and
  limitations under the License.
 */
-package com.groupon.odo.controllers;
+package com.odoteam.odo.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.ser.FilterProvider;
 import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
-import com.groupon.odo.controllers.models.Identifiers;
+import com.odoteam.odo.controllers.models.Identifiers;
 import com.groupon.odo.proxylib.ClientService;
 import com.groupon.odo.proxylib.Constants;
 import com.groupon.odo.proxylib.EditService;
